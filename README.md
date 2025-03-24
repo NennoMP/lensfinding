@@ -23,7 +23,7 @@ The task required to build a model to solve a multi-class classification problem
 
 *Architecture.* For simplicity, we employ a relatively small ResNet18 [1], a Convolutional Neural Network (CNN) with identity mappings. Indeed, more complex architectures (e.g., DenseNets, ViTs) would have probably provided better performance. However, for the scope of this task, and to save computational resources both during model selection and training, we didn't consider the trade-off worth it.
 
-*Methodology.* Model selection is carried out by means of grid-search. The model is trained and evaluated on an $80$-$20$ train-val split. The splits are obtained via stratified splitting on the original training set. The explored hyperparameters include the learning rate and a learning rate decay, which is used within a linear decay learning rate scheduler. Additionally, we separately test two configurations where the dataset is either applied or not applied a square-root stretch, to (possibly) enhance features with lower surface brightness [2]. The model is trained for at most $100$ training epochs. An early-stopping mechanism with patience of $10$ epochs is employed to halt training when validation performance does not improve anymore. The results are averaged across $5$ trials.
+*Methodology.* Model selection is carried out by means of grid-search. The model is trained and evaluated on an $80-20$ train-val split. The splits are obtained via stratified splitting on the original training set. The explored hyperparameters include the learning rate and a learning rate decay, which is used within a linear decay learning rate scheduler. Additionally, we separately test two configurations where the dataset is either applied or not applied a square-root stretch, to (possibly) enhance features with lower surface brightness [2]. The model is trained for at most $100$ training epochs. An early-stopping mechanism with patience of $10$ epochs is employed to halt training when validation performance does not improve anymore. The results are averaged across $5$ trials.
 
 Finally, when model selection is concluded, we take the best identified configuration and perform a final retraining on the entire training set, and evaluate on the test set.
 
@@ -37,7 +37,7 @@ Finally, when model selection is concluded, we take the best identified configur
 
 ![Model performance visualization](./assets/multiclass_classification_plot.png)
 
-**Figure 1**: Visualization of the ROC curve, and confusion matrix.
+**Figure 1**: Visualization of the ROC curve and confusion matrix, for the multi-class classification dataset.
 
 ### Specific Test II. Lens Finding
 The task required to build a model to solve a binary-class classification problem on lenses and non-lenses images. See `lensfinding.ipynb` notebook.
@@ -52,7 +52,7 @@ where $w_{i}$ and $f_{i}$ are the penalty and the frequency of class $i$.
 
 However, it is worth pointing out that for better performance, due to such a huge class imbalance, more complex aproaches are required. For instance, oversampling the minority class via data augmentation, or Domain Adaptation (DA) if generating generating simulated data is possible.
 
-*Methodology.* Model selection is carried out by means of grid-search. The model is trained and evaluated on an $80$-$20$ train-val split. The splits are obtained via stratified splitting on the original training set. The explored hyperparameters include the learning rate and a learning rate decay, which is used within a linear decay learning rate scheduler. Additionally, we separately test two configurations where the dataset is either applied or not applied a square-root stretch, to (possibly) enhance features with lower surface brightness [2]. The model is trained for at most $100$ training epochs. An early-stopping mechanism with patience of $10$ epochs is employed to halt training when validation performance does not improve anymore. The results are averaged across $5$ trials.
+*Methodology.* Model selection is carried out by means of grid-search. The model is trained and evaluated on an $80-20$ train-val split. The splits are obtained via stratified splitting on the original training set. The explored hyperparameters include the learning rate and a learning rate decay, which is used within a linear decay learning rate scheduler. Additionally, we separately test two configurations where the dataset is either applied or not applied a square-root stretch, to (possibly) enhance features with lower surface brightness [2]. The model is trained for at most $100$ training epochs. An early-stopping mechanism with patience of $10$ epochs is employed to halt training when validation performance does not improve anymore. The results are averaged across $5$ trials.
 
 Finally, when model selection is concluded, we take the best identified configuration and perform a final retraining on the entire training set, and evaluate on the test set.
 
@@ -62,11 +62,11 @@ Finally, when model selection is concluded, we take the best identified configur
 |-------|----------|----------|
 | ResNet18 | 11.7M | 0.98 |
 
-**Table 1**: Performance achieved by ResNet18 on the test set of the multi-class classification dataset.
+**Table 2**: Performance achieved by ResNet18 on the test set of the lens finding dataset.
 
 ![Model performance visualization](./assets/lensfinding_plot.png)
 
-**Figure 1**: Visualization of the ROC curve, and confusion matrix.
+**Figure 2**: Visualization of the ROC curve and confusion matrix, for the lens finding dataset.
 
 ### Bigliography
 [1] He, Kaiming, et al. *Deep residual learning for image recognition.* Proceedings of the IEEE conference on computer vision and pattern recognition. 2016. <br/>
